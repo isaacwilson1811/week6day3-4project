@@ -1,0 +1,44 @@
+html, body {
+    padding:0;
+    margin:0;
+    width:100%;
+    background-color:rgb(201, 201, 201);
+}
+
+#pageFlex{
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+#contentDiv{
+    width:90%;
+    height:100%;
+}
+#headerDiv{
+    position: fixed;
+    top: 0px;
+    height:200px;
+    width:90%;
+    background-color:rgb(201, 193, 147);
+    z-index: 100;
+}
+#commentListDiv{
+    position:relative;
+    top: 200px;
+    width:100%;
+    background-color:gray;
+    margin-bottom:100px;
+    padding:20px 0;
+}
+.commentPost{
+    margin: 0px 20px 20px 20px;
+    height: 100px;
+    background-color:white;
+}
+#commentFormDiv{
+    position: fixed;
+    bottom: 0px;
+    height: 100px;
+    width:90%;
+    background-color:rgb(171, 171, 206);
+}
