@@ -5,7 +5,7 @@ html, body {
     background-color:rgb(201, 201, 201);
 }
 
-#pageFlex{
+#centerPage{
     width:100%;
     display:flex;
     justify-content: center;
@@ -22,7 +22,7 @@ html, body {
     background-color:rgb(201, 193, 147);
     z-index: 100;
 }
-#commentListDiv{
+#commentPostList{
     position:relative;
     top: 200px;
     width:100%;
@@ -31,14 +31,42 @@ html, body {
     padding:20px 0;
 }
 .commentPost{
+    display:flex;
+    justify-content: space-between;
     margin: 0px 20px 20px 20px;
-    height: 100px;
     background-color:white;
 }
+.commentPost .leftCol{
+    width:100px;
+    background-color:blue;
+}
+.commentPost .rightCol{
+    width:100%;
+}
+.commentPost .row1{
+    display:flex;
+    justify-content:space-between;
+    background-color:red;
+}
+.commentPost .row2{
+    display:flex;
+    justify-content:flex-start;
+    background-color:yellow;
+}
+.commentPost .row3{
+    display:flex;
+    justify-content:flex-end;
+    background-color:green;
+}
 #commentFormDiv{
+    display:flex;
+    justify-content:center;
     position: fixed;
     bottom: 0px;
     height: 100px;
     width:90%;
     background-color:rgb(171, 171, 206);
+}
+.hidden{
+    display:none;
 }
