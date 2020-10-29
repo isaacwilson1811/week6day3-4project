@@ -36,6 +36,9 @@ html, body {
     justify-content: space-between;
     margin: 0px 20px 20px 20px;
 }
+.commentPost p{
+    padding-left:20px;
+}
 .commentPost .leftCol{
     width:100px;
 	background-image: url("img/userIcon.png");
