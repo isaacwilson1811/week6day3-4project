@@ -2,7 +2,7 @@ html, body {
     padding:0;
     margin:0;
     width:100%;
-    background-color:rgb(201, 201, 201);
+    background-color:#23232c;
 }
 
 #centerPage{
@@ -11,34 +11,37 @@ html, body {
     justify-content: center;
 }
 #contentDiv{
-    width:90%;
+    width:98%;
     height:100%;
 }
 #headerDiv{
     position: fixed;
     top: 0px;
     height:200px;
-    width:90%;
-    background-color:rgb(201, 193, 147);
+    width:98%;
     z-index: 100;
+	background-color:#566166;
+	color:white;
 }
 #commentPostList{
     position:relative;
     top: 200px;
     width:100%;
-    background-color:gray;
-    margin-bottom:100px;
+    background-color:#cbcbd1;
+    margin-bottom:500px;
     padding:20px 0;
 }
 .commentPost{
     display:flex;
     justify-content: space-between;
     margin: 0px 20px 20px 20px;
-    background-color:white;
 }
 .commentPost .leftCol{
     width:100px;
-    background-color:blue;
+	background-image: url("img/userIcon.png");
+	background-repeat:no-repeat;
+	background-position: center 10px;
+    background-color:#566166;
 }
 .commentPost .rightCol{
     width:100%;
@@ -46,17 +49,17 @@ html, body {
 .commentPost .row1{
     display:flex;
     justify-content:space-between;
-    background-color:red;
+    background-color:#d9dbdc;
 }
 .commentPost .row2{
     display:flex;
     justify-content:flex-start;
-    background-color:yellow;
+    background-color:#fafbfb;
 }
 .commentPost .row3{
     display:flex;
     justify-content:flex-end;
-    background-color:green;
+    background-color:#d9dbdc;
 }
 #commentFormDiv{
     display:flex;
@@ -64,8 +67,8 @@ html, body {
     position: fixed;
     bottom: 0px;
     height: 100px;
-    width:90%;
-    background-color:rgb(171, 171, 206);
+    width:98%;
+    background-color:#566166;
 }
 .hidden{
     display:none;

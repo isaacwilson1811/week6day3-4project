@@ -2,7 +2,11 @@
 var postID = 0;
 let html_postList = $('#commentPostList');
 let button_submitComment = $('#submitComment');
-let postArray = [{}];
+let postArray = [];
+
+function findMyIndex(obj,id){
+	return obj.order === id;
+}
 
 // Constructor Function for Post object.
 function Post(name,comment,order){
@@ -12,15 +16,14 @@ function Post(name,comment,order){
 }
 
 //Function making a post content block using string template for each comment post
-function writePost(name,comment,order){
+function writePost(name,comment,id){
 	let ts = new Date();
 	let tsDate = ts.toDateString();
 	let tsTime = ts.toLocaleTimeString();
 	let timeStamp = "Posted @ " + tsTime + " On " + tsDate;
-	let dID = order.toString()+"d";
-	let eID = order.toString()+"e";
+	
     let myPost =
-`<div id="${order}" class="commentPost">
+`<div id="${id}" class="commentPost">
     <div class="leftCol">
     </div>
     <div class="rightCol">
@@ -29,8 +32,8 @@ function writePost(name,comment,order){
                 <p>${name}</p><p>${timeStamp}</p>
             </section>
             <section>
-                <button type="button" id="${eID}" class="editBtn">Edit</button>
-                <button type="button" id="${dID}" class="deleteBtn">Delete</button>
+                <button type="button" id="${id}" class="editBtn">Edit</button>
+                <button type="button" id="${id}" class="deleteBtn">Delete</button>
             </section>
         </div>
         <div class="row2">
@@ -39,7 +42,7 @@ function writePost(name,comment,order){
             </section>
         </div>
         <div class="row3">
-            <input type="text" id="commentEdit" value="${comment}">
+            <input type="text" id="commentEdit" value="">
             <button type="button" id="submitCommentEdit">Submit</button>
         </div>
     </div>
@@ -49,37 +52,39 @@ return myPost;
 
 //the function to build up all the posts into the html
 function updatePosts(){
-	$(html_postList).html("");
-	// for each post, append the html
+    //let i = postArray.length;
+	// for each post, make a string of html for that post
+    let myHTML = "";
     postArray.forEach(function(obj){
         let name = obj.name;
         let comment = obj.comment;
 		let id = obj.order;
-		$(html_postList).append(writePost(name,comment,id));
-		$('.row3').hide();
-		//attach event handlers to buttons
-		//delete comment
-		let idd = "#"+id.toString()+"d";
-		$('#commentPostList').on('click', idd, function(){	
-			console.log('click');
-			let myPostBlock = $(this).parentsUntil('#commentPostList');
-			$(myPostBlock).remove();
-			let myPostID = id;
-			let myIndex = postArray.findIndex(function(obj){
-				return obj.order === Number(myPostID);
-			});
-			postArray.splice(myIndex,1);
-			//delete postArray[myIndex];
-			updatePosts();
-		});
-		//edit comment shows the .row3 class
-		let ide = "#"+id.toString()+"e";
-		$('#commentPostList').on('click', ide, function(){		
-			let row3 = $(this).parentsUntil('.rightCol').next().next();
-			$(row3).show();
-
-		});
+        myHTML += writePost(name,comment,id);
     });
+	// put all the strings into the html
+    $(html_postList).html(myHTML);
+	$('.row3').hide();
+	
+	//attach event handlers to buttons
+	
+	//delete comment
+	$('#commentPostList').on('click', '.deleteBtn', function(){	
+		let myPostID = $(this).attr("id");
+		let myIndex = postArray.findIndex(function(obj){
+			return obj.order === Number(myPostID);
+		});
+		delete postArray[myIndex];
+		
+		let myPostBlock = $(this).parentsUntil('#commentPostList');
+		$(myPostBlock).remove();
+	});
+	//edit comment shows the .row3 class
+	$('#commentPostList').on('click', '.editBtn', function(){		
+		let row3 = $(this).parentsUntil('.rightCol').next().next();
+		$(row3).show();
+
+	});
+
 };
 
 //When The Submit Comment Button Is Clicked Call The Function
@@ -94,7 +99,6 @@ $(button_submitComment).on('click',function(){
         let order = postID;
         postArray.unshift(new Post(name,comment,order));
 		postID++;
-		$(html_postList).html("");
         updatePosts();
     }
 });
