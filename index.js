@@ -1,4 +1,4 @@
-//
+//some vars I'll need
 var postID = 0;
 let html_postList = $('#commentPostList');
 let button_submitComment = $('#submitComment');
@@ -13,6 +13,7 @@ function Post(name,comment,order){
 
 //Function making a post content block using string template for each comment post
 function writePost(name,comment,order){
+	//I had timestamps in here but decided not to use
 	let ts = new Date();
 	let tsDate = ts.toDateString();
 	let tsTime = ts.toLocaleTimeString();
@@ -50,9 +51,10 @@ return myPost;
 
 //the function to build up all the posts into the html
 function updatePosts(){
+	//this is what fixed all my problems
 	$('#commentPostList').off('click');
 	$(html_postList).html("");
-	// for each post, append the html
+	// for each post object in the array, append the html and assign event handlers
     postArray.forEach(function(obj){
         let name = obj.name;
         let comment = obj.comment;
@@ -67,6 +69,7 @@ function updatePosts(){
 			let myPostBlock = $(this).parentsUntil('#commentPostList');
 			$(myPostBlock).remove();
 			let myPostID = id;
+			//this finds the index of the object i want to splice out
 			let myIndex = postArray.findIndex(function(obj){
 				return obj.order === Number(myPostID);
 			});
@@ -89,6 +92,7 @@ function updatePosts(){
 			let myPostID = id;			
 			let myComment = $(this).prev().val();
 			console.log(myComment);
+			//this finds the index of the object i want to edit
 			let myIndex = postArray.findIndex(function(obj){
 				return obj.order === Number(myPostID);
 			});
